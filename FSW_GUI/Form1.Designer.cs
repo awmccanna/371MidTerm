@@ -41,10 +41,10 @@
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Path = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Event = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Extension = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
@@ -149,13 +149,14 @@
 			// 
 			this.dataGridView1.AllowUserToAddRows = false;
 			this.dataGridView1.AllowUserToDeleteRows = false;
+			this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FileName,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column2});
+            this.Path,
+            this.Event,
+            this.Extension,
+            this.Date});
 			this.dataGridView1.Location = new System.Drawing.Point(12, 284);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.Size = new System.Drawing.Size(746, 244);
@@ -163,30 +164,28 @@
 			// 
 			// FileName
 			// 
-			this.FileName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
 			this.FileName.HeaderText = "File Name";
 			this.FileName.Name = "FileName";
-			this.FileName.Width = 79;
 			// 
-			// Column3
+			// Path
 			// 
-			this.Column3.HeaderText = "Column3";
-			this.Column3.Name = "Column3";
+			this.Path.HeaderText = "Path";
+			this.Path.Name = "Path";
 			// 
-			// Column4
+			// Event
 			// 
-			this.Column4.HeaderText = "Column4";
-			this.Column4.Name = "Column4";
+			this.Event.HeaderText = "Event";
+			this.Event.Name = "Event";
 			// 
-			// Column5
+			// Extension
 			// 
-			this.Column5.HeaderText = "Column5";
-			this.Column5.Name = "Column5";
+			this.Extension.HeaderText = "Extension";
+			this.Extension.Name = "Extension";
 			// 
-			// Column2
+			// Date
 			// 
-			this.Column2.HeaderText = "Column2";
-			this.Column2.Name = "Column2";
+			this.Date.HeaderText = "Date";
+			this.Date.Name = "Date";
 			// 
 			// Form1
 			// 
@@ -204,6 +203,7 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "Form1";
 			this.Text = "Form1";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -227,10 +227,10 @@
 		private System.Windows.Forms.ComboBox comboBox1;
 		private System.Windows.Forms.DataGridView dataGridView1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Path;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Event;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Extension;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Date;
 	}
 }
 

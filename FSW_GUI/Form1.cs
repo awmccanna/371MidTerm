@@ -21,9 +21,15 @@ namespace FSW_GUI
 		{
 			
 			InitializeComponent();
+			ConnectToDatabase();
 
 		}
 
+		
+		/*
+		 * Connects to the SQLite database
+		 * Attempts to create the appropriate table if the table doesn't already exist
+		 */
 		private void ConnectToDatabase()
 		{
 			dbConn = new SQLiteConnection("Data Source=database.db;Version = 3;New=True;Compress=True;");
@@ -36,18 +42,12 @@ namespace FSW_GUI
 								"[Extension] VARCHAR(10) DEFAULT '.txt'," +
 								"[Date] DATETIME DEFAULT CURRENT_TIMESTAMP" +
 								")";
-
 			dbCmd.ExecuteNonQuery();
+			
+		}
 
-			//dbCmd.CommandText = "INSERT INTO Test DEFAULT VALUES";
-			//dbCmd.ExecuteNonQuery();
-			dbCmd.CommandText = "SELECT * FROM Test";
-			dbDataReader = dbCmd.ExecuteReader();
-
-			while (dbDataReader.Read())
-			{
-				Console.WriteLine(dbDataReader["FileName"] + " " + dbDataReader["Path"] + " " + dbDataReader["Event"] + " " + dbDataReader["Extension"] + " " + dbDataReader["Date"]);
-			}
+		private void DisconnectFromDatabase()
+		{
 			dbConn.Close();
 		}
 
@@ -58,7 +58,31 @@ namespace FSW_GUI
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			ConnectToDatabase();
+			testQuery();
+		}
+
+		//function for testing database
+		private void testQuery()
+		{
+			dbCmd.CommandText = "SELECT * FROM Test";
+			dbDataReader = dbCmd.ExecuteReader();
+
+			while (dbDataReader.Read())
+			{
+				string[] newRow = { dbDataReader["FileName"].ToString(), dbDataReader["Path"].ToString(), dbDataReader["Event"].ToString(), dbDataReader["Extension"].ToString(), dbDataReader["Date"].ToString() };
+				dataGridView1.Rows.Add(newRow);
+			}
+		}
+
+		/*
+		 * When the form is closing, there will be a prompt to save everything to the database,
+		 *Followed by closing the database before exiting.
+		 */
+		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			// TODO add check on exit.
+			DisconnectFromDatabase();
+			Console.WriteLine("database closed");
 		}
 	}
 }
